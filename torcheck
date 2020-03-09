@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+import requests
+
+print("Checking Tor connection status...")
+ip = requests.get('http://ipecho.net/plain').text
+check = requests.get('https://check.torproject.org/').text
+if 'Congratulations' in check:
+	print("\x1b[1;32mCongratulations! You are connected to the Tor network!\nYour IP address appears to be: " + ip)
+elif 'Sorry' in check:
+	print("\x1b[1;31mSorry, you are not connected to the Tor network.\nYour IP address appears to be: " + ip)
+else:
+	print("Error: Could not determine connection status.")
